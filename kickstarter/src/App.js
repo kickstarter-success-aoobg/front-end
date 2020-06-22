@@ -8,21 +8,23 @@ import DashBoard from './Components/DashBoard'
 import AddCampaign from './Components/Forms/AddCampaign';
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
+import { ProfileProvider} from './Components/ProfileContext'
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <Router>
-        <Route path='/' />
-        <Route path='/login' component={Login}/>
-        <Route path='/addcampaign' component={AddCampaign}/>
-        <Route path='/signup' component={SignUp}/>
-        <PrivateRoute path='/profile' component={Profile}/>
-      </Router>
-      <Footer />
-    </div>
-    
+    <ProfileProvider>
+      <div className="App">
+        <NavBar />
+        <Router>
+          <Route path='/' />
+          <Route path='/login' component={Login}/>
+          <Route path='/addcampaign' component={AddCampaign}/>
+          <Route path='/signup' component={SignUp}/>
+          <PrivateRoute path='/profile' component={Profile}/>
+        </Router>
+        <Footer />
+      </div>
+    </ProfileProvider>
   );
 }
 
