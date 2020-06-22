@@ -9,6 +9,7 @@ import AddCampaign from './Components/Forms/AddCampaign';
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
 import { ProfileProvider} from './Components/ProfileContext'
+import UpdateProfile from './Components/Forms/UpdateProfile';
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
           <Route path='/login' component={Login}/>
           <Route path='/addcampaign' component={AddCampaign}/>
           <Route path='/signup' component={SignUp}/>
+          <Route path ='/updateprofile' component={UpdateProfile}/>
           <PrivateRoute path='/profile' component={Profile}/>
+
         </Router>
         <Footer />
       </div>
