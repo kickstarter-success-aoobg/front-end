@@ -4,7 +4,7 @@ import PrivateRoute from './Components/PrivateRoute'
 import Login from './Components/Forms/Login'
 import Profile from './Components/Profile'
 import SignUp from './Components/SignUp'
-// import DashBoard from './Components/DashBoard'
+import Dashboard from './Components/Dashboard'
 import AddCampaign from './Components/Forms/AddCampaign';
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
@@ -22,7 +22,7 @@ function App() {
           <Route path='/addcampaign' component={AddCampaign}/>
           <Route path='/signup' component={SignUp}/>
           <Route path ='/updateprofile' component={UpdateProfile}/>
-          <PrivateRoute path='/profile' component={Profile}/>
+          <PrivateRoute path='/profile' component={Dashboard}/>
         </Router>
         <Footer />
       </div>
