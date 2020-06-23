@@ -9,7 +9,7 @@ export default function RegistrationForm(props) {
     } = props;
 
   return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+        <div className="card col-lg-4 login-card mt-2 hv-center">
             <span className="error">{error}</span>
             <form onSubmit={onSubmit}>
                 <div className="form-group text-left">

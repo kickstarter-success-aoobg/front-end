@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoginForm from './components/LoginForm/LoginForm';
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './components/Header/Header';
   
   const initialFormValues = {
-    email: '',
+    username: '',
     password: '',
     confirmPassword: ''
   }
 
+  const initialFormValuesLogin = {
+    username: '',
+    password: ''
+  }
+
 function App() {
 
-  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formValuesLogin,setFormValuesLogin] = useState(initialFormValuesLogin);
   const onInputChange = event => {
     const name = event.target.name
     const value = event.target.value
@@ -21,46 +28,51 @@ function App() {
     })
   }
 
-  const initialError = '';
-  const [error, setError] = useState(initialError);
+  const onInputChangeLogin = event => {
+    const name = event.target.name
+    const value= event.target.value
+    setFormValuesLogin({
+      ...formValuesLogin,
+      [name]: value,
+    })
+  }
+
+  // const initialError = '';
+  // const [error, setError] = useState(initialError);
 
   const onSubmit = (event) => {
     event.preventDefault();
 
-    // Check if All fields are filled in
+    // setUser(event.target);
+}
 
-    if((!formValues.email) || (!formValues.password) || (!formValues.confirmPasword)) {
-      // Failed - All fields are required
-      setError('All Fields are Required');
-    } else if(formValues.password !== formValues.confirmPassword) {
-      // Failed - Passwords do not match
-      setError('Passwords Do Not Match');
-    } else {
-      // YAY! We can log user in
-      // REACT 2 SHOULD USE THIS SPACE TO REGISTER USER TO DATABASE
-      const newUser = { ...formValues }
-      setFormValues(initialFormValues);
-    }
+// const initialErrorLogin = '';
+// const [errorLogin, setErrorLogin] = useState(initialErrorLogin);
+
+const onSubmitLogin = (event) => {
+  event.preventDefault();
+
+  // setUser(event.target);
 }
 
 return (
-    <Router>
     <div className="App">
       <Header/>
-        <div className="container d-flex align-items-center flex-column">
-          <Switch>
-            <Route path="/" exact={true}>
+        <div className="container d-flex align-items-center flex-column" style={{width:"100%"}}>
               <RegistrationForm
-                error={error}
+                // error={error}
                 values={formValues}
                 onInputChange={onInputChange}
                 onSubmit={onSubmit}
               />
-            </Route>
-          </Switch>
+              <LoginForm
+                // error={errorLogin}
+                values={formValuesLogin}
+                onInputChange={onInputChangeLogin}
+                onSubmit={onSubmitLogin}
+              />
        </div>
    </div>
-  </Router>
   )  
 }
 export default App;
