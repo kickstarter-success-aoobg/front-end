@@ -1,5 +1,5 @@
 import React, {useState, createContext} from 'react'
-import axiosWithAuth from './'
+import axiosWithAuth from '../AxiosAuth'
 
 const initialProfile = {Name: '', campaigns: ''}
 
