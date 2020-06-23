@@ -1,9 +1,29 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { ProfileContext } from './ProfileContext'
 import styled from 'styled-components'
 import Puppy from '../Images/Puppy.jpg'
+import {Link} from 'react-router-dom'
+import axiosWithAuth from '../AxiosAuth'
+import AddCampaign from './Forms/AddCampaign'
 
 const Dashboard = () => {
+    const [campaigns, setCampaigns] = useState(['test', 'test2'])
+
+   
+   const getCampaignData = () => {
+       axiosWithAuth()
+       .get('https://kickstarter-backend-bw.herokuapp.com/')
+       .then(res => {
+           setCampaigns(res.data)
+       })
+   }
+//     useEffect(()=>{
+//        getCampaignData()
+//    },[])
+
+    const test = () => {
+        console.log('works')
+    }
     const [profile] = useContext(ProfileContext)
     return (
         <MainDiv>
@@ -13,18 +33,23 @@ const Dashboard = () => {
                         <div>
                             <img src={Puppy} height='125px' weight='125px'/>
                         </div>
-                        <div>
-                            <p>KSClopton</p>
-                        </div>
+                        <p>KSClopton</p>
+                        
                     </ProfileDiv>
                     <StatsDiv>
                         <p>Campaigns:</p>
                         <p>Funded: </p>
                     </StatsDiv>
                 </ProfileCard>
-               <CampaignsDiv>
-                    <p>+</p>
-                </CampaignsDiv> 
+               <AdCampaign>
+
+                    <Link to='/addcampaign'>+</Link>
+                </AdCampaign> 
+                <CampaignsDiv>
+                {campaigns.map(item => {
+                        return <h2>{item[1]}</h2>
+                    })}
+                </CampaignsDiv>
             </OuterDiv>
         </MainDiv>
     )
@@ -42,18 +67,23 @@ const OuterDiv = styled.div`
     flex-direction: column;
     width: 50%;
     /* box-shadow: 2px 1px 10px 2px lightgrey; */
-    border: solid grey 1px;
     /* justify-content: flex-start; */
     /* border: solid red 2px; */
 `
 const ProfileCard = styled.div`
     display: flex;
-    border: solid grey 2px;
+    
 `
 const ProfileDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
+    justify-content: flex-start;
+    
+
+    p{
+       
+    }
 
 `
 
@@ -61,17 +91,28 @@ const StatsDiv = styled.div`
     font-size: 1.5rem;
 
 `
+const AdCampaign = styled.div`
+    border: solid grey 2px;
+    justify-content: center;
+    margin-top: 15%;
+
+
+    &:hover{
+       box-shadow: 0 0 8px 3px lightgrey; 
+       cursor: pointer;
+    }
+    
+
+    Link{
+        text-align: center;
+        font-size: 1.75rem;
+    }
+
+`
 const CampaignsDiv = styled.div`
     border: solid grey 2px;
-    height: 150px;
-    font-size: 1.75rem;
-    align-items: center;
     justify-content: center;
-    
-    p{
-        text-align: center;
-        border: solid red 2px;
-    }
+    margin-top: 15%;    
 
 `
 export default Dashboard
