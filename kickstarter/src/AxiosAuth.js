@@ -8,3 +8,4 @@ const axiosWithAuth = (props) => {
         headers: { Authorization: token }
     })
 }
+export default axiosWithAuth
