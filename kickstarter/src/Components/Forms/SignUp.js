@@ -33,7 +33,7 @@ const SignUp = () => {
         .then(res => {
             console.log(res)
             localStorage.setItem('userId', res.data.id)
-            localStorage.setItem('token', res.payload)
+            // localStorage.setItem('token', res.payload)
             window.location.assign('/login')
         })
     }

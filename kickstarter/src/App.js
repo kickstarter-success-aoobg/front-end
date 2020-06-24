@@ -13,8 +13,8 @@ import UpdateProfile from './Components/Forms/UpdateProfile';
 
 function App() {
 
-  let myId = localStorage.getItem('userId')
-  console.log(myId)
+  
+  
   return (
    <Router> 
      <ProfileProvider>
@@ -28,7 +28,7 @@ function App() {
             <Route exact path='/addcampaign' component={AddCampaign}/>
             <Route exact path='/signup'><SignUp /></Route>
             <Route exact path ='/updateprofile' component={UpdateProfile}/>
-            <PrivateRoute exact path='/profile' component={Dashboard}/>
+            <PrivateRoute exact path='/dashboard' component={Dashboard}/>
             {/* <Route exact path='/dashboard' component={Dashboard}/> */}
           </Switch>
         

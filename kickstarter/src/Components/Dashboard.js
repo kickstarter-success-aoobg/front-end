@@ -5,21 +5,28 @@ import Puppy from '../Images/Puppy.jpg'
 import {Link} from 'react-router-dom'
 import axiosWithAuth from '../AxiosAuth'
 import AddCampaign from './Forms/AddCampaign'
+import CampaignCards from './CampaignCards'
 
 const Dashboard = () => {
-    const [campaigns, setCampaigns] = useState(['test', 'test2'])
-
+    
+    const [campaigns, setCampaigns] = useState([])
+    console.log(campaigns)
+  
+    
    
-   const getCampaignData = () => {
+   const getCampaignData = (id) => {
        axiosWithAuth()
-       .get('https://kickstarter-backend-bw.herokuapp.com/')
+       .get(`https://kickstarter-backend-bw.herokuapp.com/api/campaigns/users/${id}`)
        .then(res => {
            setCampaigns(res.data)
+           console.log(res.data)
        })
    }
-//     useEffect(()=>{
-//        getCampaignData()
-//    },[])
+    useEffect(()=>{
+        const id = localStorage.getItem('userId')
+        console.log(id)
+        getCampaignData(id)
+   },[])
 
     const test = () => {
         console.log('works')
@@ -37,7 +44,7 @@ const Dashboard = () => {
                         
                     </ProfileDiv>
                     <StatsDiv>
-                        <p>Campaigns:</p>
+                        <p>Campaigns: {campaigns.length}</p>
                         <p>Funded: </p>
                     </StatsDiv>
                 </ProfileCard>
@@ -46,9 +53,7 @@ const Dashboard = () => {
                     <Link to='/addcampaign'>+</Link>
                 </AdCampaign> 
                 <CampaignsDiv>
-                {campaigns.map(item => {
-                        return <h2>{item[1]}</h2>
-                    })}
+                    <CampaignCards campaigns={campaigns}/>
                 </CampaignsDiv>
             </OuterDiv>
         </MainDiv>
@@ -57,7 +62,6 @@ const Dashboard = () => {
 
 const MainDiv = styled.div`
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     border: solid red 1px;
 
@@ -66,9 +70,7 @@ const OuterDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
-    /* box-shadow: 2px 1px 10px 2px lightgrey; */
-    /* justify-content: flex-start; */
-    /* border: solid red 2px; */
+
 `
 const ProfileCard = styled.div`
     display: flex;
@@ -79,12 +81,12 @@ const ProfileDiv = styled.div`
     flex-direction: column;
     width: 50%;
     justify-content: flex-start;
-    
-
+    img{
+        border-radius: 50%;
+    }
     p{
        
     }
-
 `
 
 const StatsDiv = styled.div`
@@ -95,14 +97,10 @@ const AdCampaign = styled.div`
     border: solid grey 2px;
     justify-content: center;
     margin-top: 15%;
-
-
     &:hover{
        box-shadow: 0 0 8px 3px lightgrey; 
        cursor: pointer;
     }
-    
-
     Link{
         text-align: center;
         font-size: 1.75rem;

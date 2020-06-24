@@ -21,8 +21,9 @@ const Login = () => {
         axiosWithAuth()
         .post('https://kickstarter-backend-bw.herokuapp.com/api/auth/login', login)
         .then(res => {
-            localStorage.setItem('token', res.payload)
-            window.location.assign('/profile')
+            console.log(res.data.token)
+            localStorage.setItem('token', res.data.token)
+            window.location.assign('/dashboard')
         })
         .catch(err => {
             console.log('Did not work')

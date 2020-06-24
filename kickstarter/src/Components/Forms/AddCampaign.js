@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axiosWithAuth from '../../AxiosAuth'
+import axios from 'axios'
 
 const initialFormValues = {category: '', description: '', duration: 0, amount: 0, name: '' }
 const initialCampaignData = {user_id: 0, name: "", description: "", campaign_length: 0, category: "", monetary_goal: 0, success_prediction: 0}
@@ -15,21 +16,26 @@ const AddCampaign = (props) => {
             [name]: value
         })
     }
-    
-    // const newCampaign = (data) => {
-    //     console.log(data)
-    //     console.log(localStorage.getItem('userId'))
-    //     setCampaignData({
-    //         user_id: localStorage.getItem('userId'),
-    //         name: metrics.name,
-    //         description: metrics.description,
-    //         campaign_length: metrics.duration,
-    //         category: metrics.category,
-    //         monetary_goal: metrics.amount,
-    //         success_prediction: data
-    //     })
-    //     postCampaign()
-    // }
+
+    useEffect(()=>{
+        axiosWithAuth()
+        .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
+        .then(res =>{
+            console.log('Test')
+        })
+    },[])
+    const setData = (res) =>{
+            setCampaignData({
+                user_id: parseInt(localStorage.getItem('userId')),
+                name: metrics.name,
+                description: metrics.description,
+                campaign_length: parseInt(metrics.duration),
+                category: metrics.category,
+                monetary_goal: parseInt(metrics.amount),
+                success_prediction: parseInt(res) 
+        })
+        postCampaign()
+    }
    const postCampaign = () => {
        console.log(campaignData)
        console.log(campaignData.success_prediction)
@@ -43,31 +49,24 @@ const AddCampaign = (props) => {
             console.log('Campaign post did not work')
         })
    }
+   
 
     const handleSubmit = e => {
         e.preventDefault()
-
+        
         axiosWithAuth()
         // DS API
         .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
         .then(res => {
             console.log('Your post was successful')
             console.log(res.data)
-            setCampaignData({
-                user_id: parseInt(localStorage.getItem('userId')),
-                name: metrics.name,
-                description: metrics.description,
-                campaign_length: parseInt(metrics.duration),
-                category: metrics.category,
-                monetary_goal: parseInt(metrics.amount),
-                success_prediction: parseInt(res.data.rate)
-            })
-            console.log(campaignData)
+            setData(res.data.rate)        
         })
-        .then(() => {
-            postCampaign()
-            console.log("Campaign added")
-        })
+        // .then(() => {
+        //     console.log(metrics)
+        //     console.log(campaignData) 
+        //     postCampaign() 
+        // })
         .catch(err => {
             console.log('Your post did not go through')
         })
