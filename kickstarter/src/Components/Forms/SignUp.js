@@ -32,8 +32,9 @@ const SignUp = () => {
         .post('https://kickstarter-backend-bw.herokuapp.com/api/auth/register', signup)
         .then(res => {
             console.log(res)
-            // localStorage.setItem('token', res.payload)
-            // window.location.assign('/login')
+            localStorage.setItem('userId', res.data.id)
+            localStorage.setItem('token', res.payload)
+            window.location.assign('/login')
         })
     }
 

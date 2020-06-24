@@ -6,7 +6,6 @@ const initialCampaignData = {user_id: 0, name: "", description: "", campaign_len
 const AddCampaign = (props) => {
     const [metrics, setMetrics] = useState(initialFormValues)
     const [campaignData, setCampaignData] = useState('')
-    const [userId, setUserId] = useState(0)
     const handleChanges = e => {
         const name = e.target.name
         const value = e.target.value
@@ -17,45 +16,61 @@ const AddCampaign = (props) => {
         })
     }
     
-    useEffect(()=>{
-        axiosWithAuth()
-        .get('https://kickstarter-backend-bw.herokuapp.com')
-        .then(res => {
-            setUserId(res.data)
-        })
-    }, [])
-    // const newCampaign = () => {
-    //     axiosWithAuth()
-    //         .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
-    //         .then(res => {
-    //             console.log('Post was successful')
-
-    //         })
+    // const newCampaign = (data) => {
+    //     console.log(data)
+    //     console.log(localStorage.getItem('userId'))
+    //     setCampaignData({
+    //         user_id: localStorage.getItem('userId'),
+    //         name: metrics.name,
+    //         description: metrics.description,
+    //         campaign_length: metrics.duration,
+    //         category: metrics.category,
+    //         monetary_goal: metrics.amount,
+    //         success_prediction: data
+    //     })
+    //     postCampaign()
     // }
+   const postCampaign = () => {
+       console.log(campaignData)
+       console.log(campaignData.success_prediction)
+        axiosWithAuth()
+        .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
+        .then(res => {
+            console.log('Post was successful')
+
+        })
+        .catch(err => {
+            console.log('Campaign post did not work')
+        })
+   }
 
     const handleSubmit = e => {
         e.preventDefault()
 
         axiosWithAuth()
+        // DS API
         .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
         .then(res => {
             console.log('Your post was successful')
-
             console.log(res.data)
+            setCampaignData({
+                user_id: parseInt(localStorage.getItem('userId')),
+                name: metrics.name,
+                description: metrics.description,
+                campaign_length: parseInt(metrics.duration),
+                category: metrics.category,
+                monetary_goal: parseInt(metrics.amount),
+                success_prediction: parseInt(res.data.rate)
+            })
+            console.log(campaignData)
         })
         .then(() => {
-            console.log('redirecting to profile page')
+            postCampaign()
+            console.log("Campaign added")
         })
         .catch(err => {
             console.log('Your post did not go through')
         })
-
-        axiosWithAuth()
-            .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
-            .then(res => {
-                console.log('Post was successful')
-
-            })
     }
 
     return (

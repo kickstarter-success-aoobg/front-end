@@ -12,6 +12,9 @@ import { ProfileProvider} from './Components/ProfileContext'
 import UpdateProfile from './Components/Forms/UpdateProfile';
 
 function App() {
+
+  let myId = localStorage.getItem('userId')
+  console.log(myId)
   return (
    <Router> 
      <ProfileProvider>
