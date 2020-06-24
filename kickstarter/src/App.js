@@ -8,7 +8,7 @@ import Dashboard from './Components/Dashboard'
 import AddCampaign from './Components/Forms/AddCampaign';
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
-import { ProfileProvider} from './Components/ProfileContext'
+import { CampaignProvider} from './Components/CampaignContext'
 import UpdateProfile from './Components/Forms/UpdateProfile';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   
   return (
    <Router> 
-     <ProfileProvider>
+     <CampaignProvider>
       
         <div className="App">
         <NavBar />
@@ -35,7 +35,7 @@ function App() {
         <Footer />
       </div>
      
-    </ProfileProvider>
+    </CampaignProvider>
      </Router>
   );
 }

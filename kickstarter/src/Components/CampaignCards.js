@@ -1,67 +1,72 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import axiosWithAuth from '../AxiosAuth'
+import { CampaignContext } from './CampaignContext'
 
 const CampaignCards = (props) => {
-    const {campaigns} = props
-    console.log(campaigns)
+    const {id, campaign} = props
+    console.log(campaign)
+    const [campaignId, setCampaignId] = useContext(CampaignContext)
+    console.log(campaignId)
+    // const id = localStorage.getItem('userId')
+    // const cID = localStorage.getItem('campaignId')
+
+    const handleDelete = () => {
+        axiosWithAuth()
+        .delete(`https://kickstarter-backend-bw.herokuapp.com/api/campaigns/${campaign.id}`)
+    }
     return (
-        <div>
-            {campaigns.map(item => {
-                return <CardDiv>
+        <MainDiv>
+            <CardDiv>
                 <InfoDiv>
-                    <h4>{item.name}</h4>
-                    <div>
-                        <p>Duration: {item.campaign_length} weeks</p>
-                        <p>Amount: ${item.monetary_goal}</p>
+                    <div className='name'>
+                       <p>{campaign.name}</p> 
                     </div>
-                    <p>{item.description}</p>
+                    <div className='info'>
+                        <p>Duration: {campaign.campaign_length} wks</p>
+                        <p>Amount: ${campaign.monetary_goal}</p>
+                    </div>
+                    <div className='description'>
+                        <p>{campaign.description}</p>
+                    </div>
                 </InfoDiv>
-                <p>{item.success_prediction}</p>
-                </CardDiv>
-
-            })}
-
-        </div>
+                <p className='prediction'>{campaign.success_prediction}</p>
+                <p>{campaign.id}</p>
+                <span >Edit /</span><span onClick={handleDelete}>Delete</span>
+            </CardDiv>
+        </MainDiv>
     )
 }
 
 const MainDiv = styled.div`
-
+    margin-top: 15%;    
 
 `
 const InfoDiv = styled.div`
     display: flex;
+    border-right: solid lightgrey 1px;
     flex-direction: column;
-    border: solid red 2px;
-    width: 80%;
-
-    h4{
-        text-align: center;
-        /* margin: 3% 0; */
-        border: solid blue 2px
-    }
-    div{
-        display: flex;
-        justify-content: flex-start;
-        border: solid blue 2px;
-        /* margin: 3% 0; */
-        
-        p{
-            padding-right: 2%;
-            margin: 3% 0;
-            border: solid blue 2px
-        }
-    }
-    p{
-        /* margin: 3% 0; */
-        border: solid blue 2px
-    }
+    justify-content: center;
+    align-content: flex-start;
+    width: 100%;
 
 `
 const CardDiv = styled.div`
-    display: flex; 
+    display: flex;
+    height: 100px;
+    border: solid grey 2px;
 
-
+    p{
+        margin: 0;
+        padding: 0;
+        width: 50%;
+        /* text-align: center; */
+    }
+    .prediction{
+        align-content: center;
+        margin-top: 10%;
+    }
+  
 `
 
 

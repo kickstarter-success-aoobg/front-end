@@ -1,12 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axiosWithAuth from '../../AxiosAuth'
 import axios from 'axios'
+import { CampaignContext } from '../CampaignContext'
 
-const initialFormValues = {category: '', description: '', duration: 0, amount: 0, name: '' }
+const initialFormValues = {category: '', blurb: '', campaign_length: 0, usd_goal: 0, name: '' }
 const initialCampaignData = {user_id: 0, name: "", description: "", campaign_length: 0, category: "", monetary_goal: 0, success_prediction: 0}
 const AddCampaign = (props) => {
+    const [campaignId, setCampaignId] = useContext(CampaignContext)
+    console.log(campaignId)
     const [metrics, setMetrics] = useState(initialFormValues)
     const [campaignData, setCampaignData] = useState('')
+
     const handleChanges = e => {
         const name = e.target.name
         const value = e.target.value
@@ -17,22 +21,23 @@ const AddCampaign = (props) => {
         })
     }
 
-    useEffect(()=>{
-        axiosWithAuth()
-        .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
-        .then(res =>{
-            console.log('Test')
-        })
-    },[])
+    // useEffect(()=>{
+    //     axiosWithAuth()
+    //     .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
+    //     .then(res =>{
+    //         console.log('Test')
+    //     })
+    // },[])
+
     const setData = (res) =>{
             setCampaignData({
-                user_id: parseInt(localStorage.getItem('userId')),
+                user_id: (localStorage.getItem('userId')),
                 name: metrics.name,
-                description: metrics.description,
-                campaign_length: parseInt(metrics.duration),
+                description: metrics.blurb,
+                campaign_length: metrics.campaign_length,
                 category: metrics.category,
-                monetary_goal: parseInt(metrics.amount),
-                success_prediction: parseInt(res) 
+                monetary_goal: metrics.usd_goal,
+                success_prediction: Math.round(res)
         })
         postCampaign()
     }
@@ -42,6 +47,9 @@ const AddCampaign = (props) => {
         axiosWithAuth()
         .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
         .then(res => {
+            console.log(res)
+            setCampaignId(res.data.id)
+            localStorage.setItem('id', res.data.id)
             console.log('Post was successful')
 
         })
@@ -60,7 +68,7 @@ const AddCampaign = (props) => {
         .then(res => {
             console.log('Your post was successful')
             console.log(res.data)
-            setData(res.data.rate)        
+            setData(res.data.success_probability)        
         })
         // .then(() => {
         //     console.log(metrics)
@@ -69,6 +77,7 @@ const AddCampaign = (props) => {
         // })
         .catch(err => {
             console.log('Your post did not go through')
+            console.log(metrics)
         })
     }
 
@@ -97,21 +106,21 @@ const AddCampaign = (props) => {
                     <option value='Theater'>Theater</option>
                 </select>
                 <input
-                name='description'
+                name='blurb'
                 placeholder='Description'
-                value={metrics.description}
+                value={metrics.blurb}
                 onChange={handleChanges}
                 />
                 <input
-                name='duration'
+                name='campaign_length'
                 placeholder='Duration'
-                value={metrics.duration}
+                value={metrics.campaign_length}
                 onChange={handleChanges}
                 />
                 <input
-                name='amount'
+                name='usd_goal'
                 placeholder='$ Goal'
-                value={metrics.amount}
+                value={metrics.usd_goal}
                 onChange={handleChanges}
                 />
                 <input

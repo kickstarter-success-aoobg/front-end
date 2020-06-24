@@ -1,24 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react'
-import { ProfileContext } from './ProfileContext'
 import styled from 'styled-components'
 import Puppy from '../Images/Puppy.jpg'
 import {Link} from 'react-router-dom'
 import axiosWithAuth from '../AxiosAuth'
 import AddCampaign from './Forms/AddCampaign'
 import CampaignCards from './CampaignCards'
+import { CampaignContext } from './CampaignContext'
 
 const Dashboard = () => {
-    
+    // const [campaignId, setCampaignId] = useContext(CampaignContext);
+    // console.log(campaignId)
     const [campaigns, setCampaigns] = useState([])
     console.log(campaigns)
-  
+    // const id = localStorage.getItem('id')
     
    
    const getCampaignData = (id) => {
        axiosWithAuth()
        .get(`https://kickstarter-backend-bw.herokuapp.com/api/campaigns/users/${id}`)
        .then(res => {
-           setCampaigns(res.data)
+           setCampaigns(res.data.campaigns)
            console.log(res.data)
        })
    }
@@ -28,10 +29,14 @@ const Dashboard = () => {
         getCampaignData(id)
    },[])
 
+//    useEffect(() => {
+//     setCampaignId(id)
+//    },[id])
+
     const test = () => {
         console.log('works')
     }
-    const [profile] = useContext(ProfileContext)
+
     return (
         <MainDiv>
             <OuterDiv>
@@ -45,15 +50,16 @@ const Dashboard = () => {
                     </ProfileDiv>
                     <StatsDiv>
                         <p>Campaigns: {campaigns.length}</p>
-                        <p>Funded: </p>
                     </StatsDiv>
                 </ProfileCard>
                <AdCampaign>
 
-                    <Link to='/addcampaign'>+</Link>
+                    <Link className='link' to='/addcampaign'>+</Link>
                 </AdCampaign> 
                 <CampaignsDiv>
-                    <CampaignCards campaigns={campaigns}/>
+                    {campaigns.map(item => {
+                        return <CampaignCards campaign={item} />
+                    })}
                 </CampaignsDiv>
             </OuterDiv>
         </MainDiv>
@@ -94,23 +100,30 @@ const StatsDiv = styled.div`
 
 `
 const AdCampaign = styled.div`
-    border: solid grey 2px;
+    display: flex;
+    border: solid lightgrey 2px;
+    height: 100px;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
     margin-top: 15%;
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;
+
     &:hover{
        box-shadow: 0 0 8px 3px lightgrey; 
        cursor: pointer;
     }
-    Link{
-        text-align: center;
-        font-size: 1.75rem;
+    .link{
+        color: lightgrey;
+        text-decoration: none;
     }
 
 `
 const CampaignsDiv = styled.div`
-    border: solid grey 2px;
-    justify-content: center;
-    margin-top: 15%;    
+  
 
 `
 export default Dashboard
