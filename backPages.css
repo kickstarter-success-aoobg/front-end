@@ -1,0 +1,214 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html {
+    max-width: 100%;
+    width: 100%;
+    font-size: 62.5%;
+    font-family: 'Bitter', serif;
+}
+
+.navigation {
+        display: flex;
+        justify-content: center;
+        font-size: 30px;
+        margin: 2vw;
+        max-width: 100%;
+}
+
+.navigation nav a {
+        padding: 20px;
+        color: gray;
+}
+
+body{
+    background: url("https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center center;
+    background-attachment: fixed;
+    font-size: 20px; 
+  }
+  
+  .reachOut {
+      float: left;
+      width: 39%;
+      text-align: ;
+      padding: 10%;
+      padding-top: 5%;
+  }
+  
+  .logo {
+    margin-bottom: 10%;
+  }
+  
+  .form {
+      float: right;
+      width: 30%;
+      text-align: center;
+      padding: 5%;
+  }
+
+  #submit_button {
+      background-color: rgba(112,255,112,0.7);
+  }
+
+  /* Mission CSS*/
+
+  .mainImage {
+      max-width: 100%;
+  }
+
+  .missionBody {
+    background-attachment: fixed;
+    background-position: center;
+    max-width: 100%;
+  }
+  
+  .missionBody h1 {
+    font-size:300%;
+    text-align: center;
+    height:200px;
+  }
+
+  .middleNav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .middleNav a{
+      text-decoration: none;
+  }
+  
+  .row1 {
+    display: flex;
+
+
+  }
+  
+  .row1 p {
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+  }
+  
+  .row2 {
+    display: flex;
+    margin-top: 100px;
+  }
+  
+  .row2 p {
+    width: 50%;
+    margin:0 20% 5% 20%;
+  }
+
+  .missionBody img {
+      width: 90%;
+  }
+
+  .pcWoman img{
+     width: 90%;
+     margin-left: 50%;
+     height: 400px;
+  }
+
+  .camMan img{
+      margin-bottom: 10%;
+      padding-right: 20%;
+  }
+
+  .mainFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+   #home {
+    position: fixed;
+    Width: 100%;
+    bottom: 0;
+   }
+
+  @media screen and (max-width: 500px) {
+      .form {
+       display: flex;
+       flex-direction: column;
+       text-align: center;
+      }
+
+      .form div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+
+    .body {
+      max-width: 100%; 
+      width: 100%;
+    }
+
+    .navigation {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .mainImage {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .missionBody {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .pcWoman img {
+        height: 500px;
+        margin: 0;
+    }
+    .pcWoman {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .camMan img {
+        padding: 0;
+    }
+
+    .camMan {
+        display: flex;
+        justify-content: center;
+    }
+
+    .row1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row2 {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+  }
