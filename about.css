@@ -3,7 +3,8 @@
 body{
   background: url("https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
   background-repeat: no-repeat;
-  background-size: 140% 130%;  
+  background-attachment: fixed;
+  background-size: cover;  
   margin: 0%;
 }
 
@@ -55,6 +56,12 @@ section{
 p{
   font-size: 5rem;
   width: 40%;
+  background: rgb(228, 218, 205);
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 6px 3px;
+  text-align: center;
+  border: 2px solid rgb(75, 48, 12);
 }
 
 img{
@@ -120,6 +127,8 @@ img{
         width: 80%;
         box-shadow: 0px 2px;
         padding: 10%;
+        background: none;
+        border: none;
     }
 }
 
