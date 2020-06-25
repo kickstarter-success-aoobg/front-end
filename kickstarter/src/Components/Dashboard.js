@@ -13,7 +13,7 @@ const Dashboard = () => {
     const [campaigns, setCampaigns] = useState([])
     console.log(campaigns)
     // const id = localStorage.getItem('id')
-    
+    const username = localStorage.getItem('username')
    
    const getCampaignData = (id) => {
        axiosWithAuth()
@@ -45,17 +45,16 @@ const Dashboard = () => {
                         <div>
                             <img src={Puppy} height='125px' weight='125px'/>
                         </div>
-                        <p>KSClopton</p>
+                        <p>{username}</p>
                         
                     </ProfileDiv>
                     <StatsDiv>
                         <p>Campaigns: {campaigns.length}</p>
                     </StatsDiv>
                 </ProfileCard>
-               <AdCampaign>
-
-                    <Link className='link' to='/addcampaign'>+</Link>
-                </AdCampaign> 
+               <Link className='link' to='/addcampaign'><p>+</p></Link>
+                   
+                   
                 <CampaignsDiv>
                     {campaigns.map(item => {
                         return <CampaignCards campaign={item} />
@@ -69,7 +68,6 @@ const Dashboard = () => {
 const MainDiv = styled.div`
     display: flex;
     justify-content: center;
-    border: solid red 1px;
 
 `
 const OuterDiv = styled.div`
@@ -77,9 +75,34 @@ const OuterDiv = styled.div`
     flex-direction: column;
     width: 50%;
 
+    .link{
+    display: flex;
+    border: solid lightgrey 2px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin-top: 15%;
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;
+
+    &:hover{
+       box-shadow: 0 0 8px 3px lightgrey; 
+       cursor: pointer;
+    }
+    p{
+        font-size: 2.5rem;
+        color: grey;
+    }
+    }
+
+
 `
 const ProfileCard = styled.div`
     display: flex;
+    border-bottom: solid lightgrey 1px;
     
 `
 const ProfileDiv = styled.div`
@@ -99,29 +122,8 @@ const StatsDiv = styled.div`
     font-size: 1.5rem;
 
 `
-const AdCampaign = styled.div`
-    display: flex;
-    border: solid lightgrey 2px;
-    height: 100px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    margin-top: 15%;
-    font-size: 2rem;
-    text-decoration: none;
-    color: black;
 
-    &:hover{
-       box-shadow: 0 0 8px 3px lightgrey; 
-       cursor: pointer;
-    }
-    .link{
-        color: lightgrey;
-        text-decoration: none;
-    }
 
-`
 const CampaignsDiv = styled.div`
   
 

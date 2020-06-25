@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
 import axiosWithAuth from '../../AxiosAuth'
-import axios from 'axios'
 import { CampaignContext } from '../CampaignContext'
 
 const initialFormValues = {category: '', blurb: '', campaign_length: 0, usd_goal: 0, name: '' }
@@ -20,14 +19,6 @@ const AddCampaign = (props) => {
             [name]: value
         })
     }
-
-    // useEffect(()=>{
-    //     axiosWithAuth()
-    //     .post('https://ds-kickstarter-predict.herokuapp.com/predict', metrics )
-    //     .then(res =>{
-    //         console.log('Test')
-    //     })
-    // },[])
 
     const setData = (res) =>{
             setCampaignData({
@@ -70,11 +61,6 @@ const AddCampaign = (props) => {
             console.log(res.data)
             setData(res.data.success_probability)        
         })
-        // .then(() => {
-        //     console.log(metrics)
-        //     console.log(campaignData) 
-        //     postCampaign() 
-        // })
         .catch(err => {
             console.log('Your post did not go through')
             console.log(metrics)
