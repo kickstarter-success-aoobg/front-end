@@ -24,12 +24,15 @@ header{
 }
 
 .maintext{
+  border: 33px solid rgb(244, 255, 244);
   border-radius: 10px;
-  box-shadow: 9px 6px;
+  background: rgb(248, 255, 248);
+  color: rgb(190, 121, 121);
+  box-shadow: 70px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  padding: 15px 25px;
 }
 
 h1{
@@ -44,7 +47,7 @@ h2{
 }
 
 button{
-  background: teal;
+  background: rgb(1, 145, 145); 
   color: black;
   font-size: 1.7rem;
   padding: 5px;
@@ -68,12 +71,142 @@ img{
 footer{
   display: flex;
   font-size: 7rem;
-  padding: 18% 0px 10px;
+  padding: 20% 0px 10px;
 }
 
 
 nav a{
-  padding: 15px 120px;
+  padding: 15px 115px;
   color: gray;
   margin: 0px;
+}
+
+@media (max-width: 1700px){
+    footer{
+        padding: 35% 0px 2%;
+    }
+}
+
+@media (max-width: 1530px){
+    body{
+        background-size: 100% 110%;
+    }
+    nav a{
+        padding: 15px 50px;
+    }
+}
+@media (max-width: 1230px){
+    .maintext{
+        box-shadow: 30px 40px;
+    }
+    footer{
+        padding: 40% 0px 2%;
+    }
+    nav a{
+        padding: 15px 37px;
+    }
+    img{
+        width: 50%;
+    }
+}
+
+@media (max-width: 1000px){
+    body{
+        background-size: 100% 1000%;
+    }
+    header{
+        flex-direction: column-reverse;
+    }
+    img{
+        width: 90%;
+    }
+    .maintext{
+        box-shadow: 0px 0px;
+        width: 80%;
+        background: none;
+        border: 0px;
+    }
+    footer{
+        padding: 22% 0px 2%;
+        justify-content: center;
+        background: teal;
+    }
+    nav a{
+        padding: 15px 40px;
+        color: black;
+    }
+}
+
+@media (max-width: 720px){
+    footer{
+        padding: 40% 0px 2%;
+    }
+}
+
+@media (max-width: 600px){
+    h1{
+        text-align: center;
+    }
+    h2{
+        text-align: center;
+    }
+    footer{
+        padding: 58% 0px 2%;
+    }
+    nav a{
+        padding: 15px 25px;
+    }
+}
+
+@media (max-width: 500px) {
+    footer{
+        padding: 65% 0px 2%;
+        
+    }
+    nav a{
+        padding: 15px 15px;
+    }
+}
+
+@media (max-width: 466px){
+    footer{
+        padding: 80% 0px 2%;
+    }
+    nav a{
+        padding: 15px 3.7px;
+    }
+}
+
+@media (max-width: 416px){
+    h1{
+        font-size: 4.1rem;
+    }
+    footer{
+        padding: 95% 0px 2%;
+    }
+    nav a{
+        font-size: 2rem;
+    }
+    h2{
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 390px){
+    h1{
+        font-size: 3.8rem;
+    }
+    footer{
+        padding: 99% 0px 2%;
+    }
+}
+
+@media (max-width: 350px){
+    footer{
+        padding: 150% 0px 2%;
+    }
+    nav a{
+        font-size: 1.5rem;
+        padding: 15px 2px;
+    }
 }
