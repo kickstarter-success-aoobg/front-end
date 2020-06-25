@@ -1,27 +1,54 @@
 import React, {useState} from 'react'
 import axiosWithAuth from '../../AxiosAuth'
+import {useParams} from 'react-router-dom'
 
-const initialData = {user_id: 0, name: "", description: "", campaign_length: 0, category: "", monetary_goal: 0, success_prediction: 0}
 
-const Edit = (props) => {
+const Edit = () => {
+    const params = useParams()
+    console.log(params)
+    const initialData = {user_id: `${params.id}`, name: "", description: "", campaign_length: 0, category: "", monetary_goal: 0, success_prediction: 1}
     const [campaign, editCampaign] = useState(initialData)
-    const {id} = props
-    console.log(id)
-    console.log(props)
+    const [newMetrics, setNewMetrics] = useState(initialData)
+    console.log(campaign)
+    const handleChanges = e => {
+        const name = e.target.name
+        const value = e.target.value
 
+        editCampaign({
+            ...campaign,
+            [name]: value
+        })
+        setNewMetrics({
+            user_id: parseInt(campaign.user_id), 
+            name: campaign.name, 
+            description: campaign.description, 
+            campaign_length: parseInt(campaign.campaign_length), 
+            category: campaign.category, 
+            monetary_goal: parseInt(campaign.monetary_goal), 
+            success_prediction: parseInt(campaign.success_prediction)
+        })  
+            
+            console.log(newMetrics)
+    }
     const handleSubmit = e => {
         e.preventDefault()
+        console.log('Working on it')
+      
+        console.log(newMetrics)
         
         axiosWithAuth()
-        .put(`https://kickstarter-backend-bw.herokuapp.comapi/campaigns/${id}`)
+        .put(`https://kickstarter-backend-bw.herokuapp.com/api/campaigns/${params.id}`, newMetrics)
         .then(res => {
             console.log('.put worked')
+        })
+        .catch(err => { 
+            console.log('.put did not work')
         })
     }
 
     return (
         <div>
-            {/* <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <select 
                 value={campaign.category}
                 onChange={handleChanges}
@@ -44,9 +71,9 @@ const Edit = (props) => {
                     <option value='Theater'>Theater</option>
                 </select>
                 <input
-                name='blurb'
+                name='description'
                 placeholder='Description'
-                value={campaign.blurb}
+                value={campaign.description}
                 onChange={handleChanges}
                 />
                 <input
@@ -56,9 +83,9 @@ const Edit = (props) => {
                 onChange={handleChanges}
                 />
                 <input
-                name='usd_goal'
+                name='monetary_goal'
                 placeholder='$ Goal'
-                value={campaign.usd_goal}
+                value={campaign.monetary_goal}
                 onChange={handleChanges}
                 />
                 <input
@@ -68,8 +95,7 @@ const Edit = (props) => {
                 onChange={handleChanges}
                 />
                 <button type='submit'>Submit</button>
-
-            </form> */}
+            </form>
         </div>
     )
 }

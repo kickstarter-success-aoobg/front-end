@@ -15,8 +15,8 @@ const NavBar = () => {
 
             <OuterDiv>
                 <LeftDiv>
-                    <Link className='wedo link' to='/aboutus'>What We Do</Link>
-                    <Link className='link' to='/nothing'>Analyze Campaign</Link>
+                    <Link className='wedo link' to='/aboutus'>Analyze Campaign</Link>
+                    <Link className='link' to='/dashboard'>Dashboard</Link>
 
                 </LeftDiv>
                 <RightDiv>

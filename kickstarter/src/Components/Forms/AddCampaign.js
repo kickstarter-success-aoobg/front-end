@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import axiosWithAuth from '../../AxiosAuth'
 import { CampaignContext } from '../CampaignContext'
 
-const initialFormValues = {category: '', blurb: '', campaign_length: 0, usd_goal: 0, name: '' }
+const initialFormValues = {category: '', blurb: '', campaign_length: '', usd_goal: '', name: '' }
 const initialCampaignData = {user_id: 0, name: "", description: "", campaign_length: 0, category: "", monetary_goal: 0, success_prediction: 0}
 const AddCampaign = (props) => {
     const [campaignId, setCampaignId] = useContext(CampaignContext)

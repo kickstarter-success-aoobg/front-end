@@ -28,9 +28,8 @@ function App() {
             <Route exact path='/addcampaign' component={AddCampaign}/>
             <Route exact path='/signup'><SignUp /></Route>
             <Route exact path ='/updateprofile' component={UpdateProfile}/>
-            <Route exact path='/edit' component={Edit}/>
+            <Route exact path='/edit/:id' component={Edit}/>
             <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-            {/* <Route exact path='/dashboard' component={Dashboard}/> */}
           </Switch>
         
         <Footer />

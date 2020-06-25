@@ -29,10 +29,6 @@ const Dashboard = () => {
         getCampaignData(id)
    },[])
 
-//    useEffect(() => {
-//     setCampaignId(id)
-//    },[id])
-
     const test = () => {
         console.log('works')
     }
@@ -45,10 +41,9 @@ const Dashboard = () => {
                         <div>
                             <img src={Puppy} height='125px' weight='125px'/>
                         </div>
-                        <p>{username}</p>
-                        
                     </ProfileDiv>
                     <StatsDiv>
+                        <p>{username}</p>
                         <p>Campaigns: {campaigns.length}</p>
                     </StatsDiv>
                 </ProfileCard>
@@ -98,11 +93,11 @@ const OuterDiv = styled.div`
     }
     }
 
-
 `
 const ProfileCard = styled.div`
     display: flex;
     border-bottom: solid lightgrey 1px;
+    padding-bottom: 5%;
     
 `
 const ProfileDiv = styled.div`

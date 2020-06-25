@@ -31,7 +31,7 @@ const CampaignCards = (props) => {
                 </InfoDiv>
                 <MetricsDiv>
                     <div>
-                        <Link to='/edit' id={campaign.id}><span className='edit' >Edit </span></Link>
+                        <Link to={`/edit/${campaign.id}`} id={campaign.id}><span className='edit' >Edit </span></Link>
                         <span>/</span>
                         <span className='delete' onClick={handleDelete}> Delete</span>
                     </div>
