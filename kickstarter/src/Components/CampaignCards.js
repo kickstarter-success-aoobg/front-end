@@ -22,7 +22,7 @@ const CampaignCards = (props) => {
                        <h3>{campaign.name}</h3> 
                     </div>
                     <div className='info'>
-                        <p>Duration: {campaign.campaign_length} wks</p>
+                        <p>Duration: {campaign.campaign_length} days</p>
                         <p>Amount: ${campaign.monetary_goal}</p>
                     </div>
                     <div className='description'>
