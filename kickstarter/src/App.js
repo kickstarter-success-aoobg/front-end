@@ -2,14 +2,14 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import PrivateRoute from './Components/PrivateRoute'
 import Login from './Components/Forms/Login'
-import Profile from './Components/Profile'
 import SignUp from './Components/Forms/SignUp'
 import Dashboard from './Components/Dashboard'
 import AddCampaign from './Components/Forms/AddCampaign';
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
-import { ProfileProvider} from './Components/ProfileContext'
+import { CampaignProvider} from './Components/CampaignContext'
 import UpdateProfile from './Components/Forms/UpdateProfile';
+import Edit from './Components/Forms/Edit'
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
   
   return (
    <Router> 
-     <ProfileProvider>
+     <CampaignProvider>
       
         <div className="App">
         <NavBar />
@@ -28,14 +28,14 @@ function App() {
             <Route exact path='/addcampaign' component={AddCampaign}/>
             <Route exact path='/signup'><SignUp /></Route>
             <Route exact path ='/updateprofile' component={UpdateProfile}/>
+            <Route exact path='/edit/:id' component={Edit}/>
             <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-            {/* <Route exact path='/dashboard' component={Dashboard}/> */}
           </Switch>
         
         <Footer />
       </div>
      
-    </ProfileProvider>
+    </CampaignProvider>
      </Router>
   );
 }

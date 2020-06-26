@@ -33,7 +33,7 @@ const SignUp = () => {
         .then(res => {
             console.log(res)
             localStorage.setItem('userId', res.data.id)
-            // localStorage.setItem('token', res.payload)
+            localStorage.setItem('username',res.data.username)
             window.location.assign('/login')
         })
     }
@@ -41,16 +41,6 @@ const SignUp = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-            {/* <input
-                name='fname'
-                placeholder='First Name'
-                onChange={handleChanges}
-                value={form.fname}/>
-                <input
-                name='lname'
-                placeholder='Last Name'
-                onChange={handleChanges}
-                value={form.lname}/> */}
                 <input
                 name='username'
                 placeholder='Username'
