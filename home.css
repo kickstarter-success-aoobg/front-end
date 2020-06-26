@@ -20,12 +20,12 @@ header{
   justify-content: space-evenly;
   align-items: center;
   color: black;
-  margin: 1% 5% 1%;
+  margin: 20px 95px 200px;
 }
 
 .maintext{
-  border: 33px solid rgb(244, 255, 244);
-  border-radius: 10px;
+  border: 27px solid rgb(244, 255, 244);
+  border-radius: 8%;
   background: rgb(248, 255, 248);
   color: rgb(190, 121, 121);
   box-shadow: 70px 60px;
@@ -39,6 +39,16 @@ h1{
   font-size: 5rem;
   color: maroon;
   font-family: garamond;
+}
+.logo{
+    box-shadow: 8.5px 0px;
+    color: rgb(117, 173, 117);
+    background: rgb(240, 253, 240);
+    width: 30%;
+    border: 5px solid rgb(75, 80, 80);
+    border-radius: 45.5% 12%;
+    object-position: 0px 2.8px;
+    padding: 5px;
 }
 h2{
   font-size: 2.3rem;
@@ -65,7 +75,7 @@ button:hover{
 
 img{
   width: 40%;
-  border-radius: 10px;
+  border-radius: 4%;
   box-shadow: 40px 22px;
 }
 
@@ -78,33 +88,86 @@ footer{
 
 nav a{
   padding: 15px 115px;
-  color: gray;
-  margin: 0px;
+  color: rgb(196, 106, 106);
+  font-size: 2.7rem;
+  margin: 20px;
+  outline: none;
 }
 
+nav a:hover{
+    color: rgb(1, 15, 15);
+    background: rgb(248, 219, 219);
+    border: 4px solid rgb(253, 220, 225);
+    border-radius: 50%;
+    font-size: 3.5rem;
+    text-decoration: none;
+    font-family: garamond;
+    font-weight: bold;
+} 
+
 @media (max-width: 1700px){
+    body{
+        background-size: 100% 122%;
+    }
+    header{
+        margin: 50px 0px 500px 0px;
+    }
     footer{
-        padding: 35% 0px 2%;
+        padding: 10px 0px 2%;
+    }
+    nav a{
+        margin: 85px;
+        padding: 0px;
+    }
+}
+
+@media (max-width: 1450px){
+    footer{
+        padding: 10% 0px 2%;
+    }
+    nav a{
+        padding: 15px 40px;
+        color: rgb(196, 106, 106);
     }
 }
 
 @media (max-width: 1530px){
+    .maintext{
+        width: 40%;
+        text-align: center;
+    }
     body{
-        background-size: 100% 110%;
+        background-size: 100% 120%;
     }
     nav a{
         padding: 15px 50px;
+        margin: 30px;
+    }
+    
+}
+
+@media (max-width: 1360px){
+    footer{
+        padding: 5px 0px;
+        margin: 0%;
+    }
+    nav a{
+        margin: 16px;
     }
 }
 @media (max-width: 1230px){
+    body{
+        background-size: 100% 120%;
+    }
     .maintext{
         box-shadow: 30px 40px;
     }
     footer{
-        padding: 40% 0px 2%;
+        padding: 3px 0px 2%;
     }
     nav a{
         padding: 15px 37px;
+        margin: 18px;
     }
     img{
         width: 50%;
@@ -112,8 +175,19 @@ nav a{
 }
 
 @media (max-width: 1120px){
+    body{
+        background-size: 100% 120%;
+    }
+    .maintext{
+        background: none;
+        border: none;
+        box-shadow: 7px 3px;
+    }
     footer{
-        padding: 45% 0px 2%;
+        padding: 2px 0px 2%;
+    }
+    nav a{
+        margin: 5px;
     }
 }
 
@@ -123,6 +197,7 @@ nav a{
     }
     header{
         flex-direction: column-reverse;
+        margin: 35px;
     }
     img{
         width: 90%;
@@ -148,6 +223,13 @@ nav a{
     }
 }
 
+@media (max-width: 805px){
+    nav a{
+        padding: 0px;
+        margin: 30px;
+    }
+}
+
 @media (max-width: 720px){
     footer{
         padding: 40% 0px 2%;
@@ -155,9 +237,7 @@ nav a{
 }
 
 @media (max-width: 600px){
-    h1{
-        text-align: center;
-    }
+    
     h2{
         text-align: center;
     }
@@ -165,7 +245,9 @@ nav a{
         padding: 58% 0px 2%;
     }
     nav a{
-        padding: 15px 25px;
+        padding: 0px;
+        margin: 5px;
+        font-size: 2.3rem;
     }
     button{
         width: 40%;

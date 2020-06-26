@@ -26,6 +26,27 @@ html {
     font-family: 'Bitter', serif;
 }
 
+.logo{
+  box-shadow: 8.5px 0px;
+  color: rgb(117, 173, 117);
+  background: rgb(240, 253, 240);
+  border: 5px solid rgb(75, 80, 80);
+  border-radius: 45.5% 12%;
+  object-position: 0px 2.8px;
+  padding: 5px;
+ width: 25%;
+}
+
+.logo2{
+  box-shadow: 8.5px 0px;
+  color: rgb(117, 173, 117);
+  background: rgb(240, 253, 240);
+  border: 5px solid rgb(75, 80, 80);
+  border-radius: 45.5% 12%;
+  object-position: 0px 2.8px;
+  padding: 5px;
+  width: 8%;
+}
 .navigation {
         background: black;
         padding: 0px 20px;;
@@ -37,32 +58,105 @@ html {
 }
 
 .navigation nav a {
-        padding: 80px;
-        color: gray;
+        padding: 60px;
+        color: rgb(226, 117, 226);
         font-size: 2.2rem;
+        
+}
+.navigation nav a:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.navigation2{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0% 0%;
+  padding: 10px;
+  background: rgb(26, 150, 150);
+}
+
+#missionnav{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+#missionnav a{
+  color: white;
+}
+
+#missionnav a:hover{
+  color: teal;
+  background: white;
+  border-radius: 8px;
 }
 
 .bigtitle{
   color: white;
-  margin: 10px;
-  font-size: 4rem;
+  font-size: 3.8rem;
+  background: url("https://media3.giphy.com/media/3oEhmP1i8wzdgx2vrW/source.gif");
+  background-size: 30000px 1000px;
+  background-position: center;
+  border-radius: 100%;
+  border: 1.8px solid rgb(117, 117, 235);
+  padding: 25px;
+  text-align: center;
+}
+.bigtitle:hover{
+  background-size: 2px 999999999px;
+    background-position: center;
+    box-shadow: 10px -5px;
+    filter: drop-shadow(-10px 5px);
+}
+.bigtitle2{
+  background-size: 2px 999999999px;
+  background-position: center;
+  color: white;
+  font-size: 3.8rem;
+  box-shadow: 10px -5px;
+  
+  border-radius: 100%;
+  padding: 25px
+    
 }
 
+.bigtitle2:hover{
+  font-size: 3rem;
+  padding: 40px;
+}
 body{
-    background: url("https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background: url("https://images.unsplash.com/photo-1531686071181-3fa95c9950a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1958&q=80");
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center center;
     background-attachment: fixed;
     font-size: 20px; 
   }
-  
+
   .reachOut {
       float: left;
       width: 39%;
-      text-align: ;
       padding: 10%;
       padding-top: 5%;
+      font-size: 2.4rem;
+      color: rgb(48, 5, 5);
+  }
+  .reachOut h1, p{
+    background: teal;
+    border-radius: 10px;
+    padding: 5px;
+    width: 50%;
+  }
+
+  .reachOut h1{
+    font-size: 2.5rem;
+    text-align: center;
+    background: rgb(247, 84, 111);
+    width: 30%;
+    font-weight: bold;
+    color: white;
   }
   
   .logo {
@@ -108,10 +202,31 @@ body{
       background-color: rgba(112,255,112,0.7);
       border: 1px solid rgb(111, 245, 111);
       border-radius: 12px;
-      padding: 6px;
+      padding: 8px;
       font-size: 1.6rem;
       font-weight: bold;
       outline: none;
+  }
+
+  #submit_button:hover{
+    background: gold;
+    color: white;
+    border: 3px solid gold;
+    cursor: pointer;
+  }
+
+  .fa{
+    margin: 8px;
+    padding: 10px;
+    font-size: 3.6rem;
+    text-decoration: none;
+  }
+
+  .fa:hover{
+    color: rgb(238, 151, 166);
+    background: rgb(51, 172, 172);
+    border-radius: 100%;
+    padding: 10px;
   }
 
   /* Mission CSS*/
@@ -140,12 +255,21 @@ body{
   .middleNav {
     display: flex;
     flex-direction: column;
+    background: black;
+    border-radius: 12px;
+    padding: 5px;
+    width: 60%;
+    font-weight: bold;
   }
 
   .middleNav a{
       text-decoration: none;
   }
-  
+  .middleNav a:hover{
+    background: rgb(11, 175, 11);
+    border-radius: 10px;
+    padding: 15px;
+  }
   .row1 {
     display: flex;
     align-items: center;
@@ -205,7 +329,16 @@ body{
     bottom: 0;
    }
 
+  @media (max-width: 1620px){
+    .logo{
+      width: 45%;
+    }
+  }
+
   @media (max-width: 1200px){
+    .logo{
+      width: 50%;
+    }
     .form {
       display: flex;
       flex-direction: column;
@@ -278,11 +411,35 @@ body{
      margin: 25px;
      font-size: 2.5rem;
    }
+   .reachOut h1, p{
+     font-size: 2rem;
+     width: 60%;
+ }
+
+ @media (max-width: 1000px){
+   .middleNav{
+     width: 100%;
+   }
+ }
+
+ @media (max-width: 800px){
+   .logo{
+     width: 80%;
+   }
+   .reachOut h1, p{
+     width: 90%;
+   }
+   .middleNav{
+     font-size: 2rem;
+   }
  }
 
  @media (max-width: 750px) {
    .navigation nav a{
        padding: 17px;
+   }
+   .middleNav{
+     font-size: 1.5rem;
    }
  }
 
