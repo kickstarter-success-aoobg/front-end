@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import Logo from '../Images/Logo.PNG'
 
 const NavBar = () => {
-
+ 
     return (
    
         <NavDiv>
