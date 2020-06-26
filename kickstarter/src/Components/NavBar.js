@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
-import Logo from '../Images/Logo.png'
+import Logo from '../Images/Logo.PNG'
 
 const NavBar = () => {
 

@@ -8,7 +8,7 @@ const AddCampaign = (props) => {
     const [campaignId, setCampaignId] = useContext(CampaignContext)
     console.log(campaignId)
     const [metrics, setMetrics] = useState(initialFormValues)
-    const [campaignData, setCampaignData] = useState('')
+    const [campaignData, setCampaignData] = useState(initialCampaignData)
 
     const handleChanges = e => {
         const name = e.target.name
@@ -19,7 +19,6 @@ const AddCampaign = (props) => {
             [name]: value
         })
     }
-
     const setData = (res) =>{
             setCampaignData({
                 user_id: (localStorage.getItem('userId')),
@@ -30,26 +29,10 @@ const AddCampaign = (props) => {
                 monetary_goal: metrics.usd_goal,
                 success_prediction: Math.round(res)
         })
-        postCampaign()
+        console.log(campaignData)
+        console.log('Set campaign data complete')
+       
     }
-   const postCampaign = () => {
-       console.log(campaignData)
-       console.log(campaignData.success_prediction)
-        axiosWithAuth()
-        .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
-        .then(res => {
-            console.log(res)
-            setCampaignId(res.data.id)
-            localStorage.setItem('id', res.data.id)
-            console.log('Post was successful')
-
-        })
-        .catch(err => {
-            console.log('Campaign post did not work')
-        })
-   }
-   
-
     const handleSubmit = e => {
         e.preventDefault()
         
@@ -59,14 +42,27 @@ const AddCampaign = (props) => {
         .then(res => {
             console.log('Your post was successful')
             console.log(res.data)
-            setData(res.data.success_probability)        
+            setData(res.data.success_probability) 
+
+             axiosWithAuth()
+                .post('https://kickstarter-backend-bw.herokuapp.com/api/campaigns/', campaignData)
+                .then(res => {
+                    console.log(res)
+                    setCampaignId(res.data.id)
+                    localStorage.setItem('id', res.data.id)
+                    console.log('Post was successful')
+
+        }) 
+        .catch(err => {
+            console.log('Campaign post did not work')
+        })      
         })
+    
         .catch(err => {
             console.log('Your post did not go through')
             console.log(metrics)
         })
     }
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
